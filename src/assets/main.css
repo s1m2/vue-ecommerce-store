@@ -1,0 +1,59 @@
+@import './base.css';
+@import './reset.css';
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-block: 1.5rem;
+  padding-inline: 1rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type="text"] {
+  padding: 0.6rem;
+  border-radius: 2rem;
+  width: 50rem;
+}
+
+.card {
+  border: 1px solid #e2e8f0;
+  padding: 0.85rem;
+}
+
+.card__img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.card__button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.card__button:hover {
+  cursor: pointer;
+  background-color: #e2e8f0;
+}
+
+.border-b {
+  border-bottom: 1px solid #e2e8f0;
+}
