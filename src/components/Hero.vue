@@ -7,8 +7,8 @@ type Props = {
 defineProps<Props>()
 </script>
 <template>
-  <div class="bg-color">
-    <div class="container grid">
+  <div class="hero-background">
+    <div class="container hero">
       <img :src="img" alt="hero-image" />
       <h1>{{ text }}</h1>
     </div>
@@ -16,10 +16,10 @@ defineProps<Props>()
 </template>
 
 <style scoped>
-.bg-color {
+.hero-background {
   background-color: aqua;
 }
-.grid {
+.hero {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 2rem;

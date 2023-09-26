@@ -19,8 +19,9 @@ const addItemToCart = () => {
       <img :src="thumbnail" :alt="title" class="card__img" />
     </RouterLink> 
     <h1>{{ title }}</h1>
+    <p>{{ brand }}</p>
     <p> £ {{ price }}</p>
-    <button class="card__button" @click="addItemToCart"><IconCart /></button>
+    <button class="card__button" @click="addItemToCart"><IconCart /> Add To Cart</button>
   </div>
 </template>
 

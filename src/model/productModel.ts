@@ -11,3 +11,5 @@ export type Product = {
   thumbnail: string;
   images: string[];
 }
+
+export type ProductWithQuantity = Product & { quantity: number }
