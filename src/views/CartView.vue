@@ -7,7 +7,7 @@ import Cart from '@/components/cart/Cart.vue'
     <h1>Shopping Cart</h1>
     <Cart />
     <div class="cta">
-      <RouterLink to="/products">&lt; Continue Shopping</RouterLink>
+      <RouterLink to="/">&lt; Continue Shopping</RouterLink>
       <RouterLink to="/checkout">Continue to Checkout ></RouterLink>
     </div>
   </div>
