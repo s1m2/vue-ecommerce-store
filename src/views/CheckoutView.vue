@@ -10,6 +10,7 @@ import PaymentInfo from '@/components/PaymentInfo.vue'
       <Cart />
       <PaymentInfo />
     </div>
+    <RouterLink to="/products">&lt; Continue Shopping</RouterLink>
   </div>
 </template>
 
