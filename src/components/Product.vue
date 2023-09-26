@@ -7,11 +7,6 @@ const props = defineProps<Product>()
 
 const productStore = useProductStore();
 const { addToCart } = productStore;
-
-const addItemToCart = () => {
-  addToCart(props)
-}
-
 </script>
 <template>
   <div class="card">
@@ -21,7 +16,7 @@ const addItemToCart = () => {
     <h1>{{ title }}</h1>
     <p>{{ brand }}</p>
     <p> £ {{ price }}</p>
-    <button class="card__button" @click="addItemToCart"><IconCart /> Add To Cart</button>
+    <button class="card__button" @click="addToCart(props)"><IconCart /> Add To Cart</button>
   </div>
 </template>
 

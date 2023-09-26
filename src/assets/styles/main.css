@@ -26,9 +26,22 @@ body {
 input[type="text"] {
   padding: 0.6rem;
   border-radius: 2rem;
-  width: 50rem;
 }
 
 .border-b {
   border-bottom: 1px solid #e2e8f0;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 8rem 4fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+.space {
+  margin-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.form-input {
+  display: grid;
 }

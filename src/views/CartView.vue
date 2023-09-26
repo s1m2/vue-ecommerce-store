@@ -1,9 +1,21 @@
 <script setup lang="ts">
+import Cart from '@/components/cart/Cart.vue'
 </script>
 
 <template>
-  <h1>Product 33</h1>
-  <div>
-    <p>Product</p>
+  <div class="container">
+    <h1>Shopping Cart</h1>
+    <Cart />
+    <div class="cta">
+      <RouterLink to="/products">'&lt;' Continue Shopping</RouterLink>
+      <RouterLink to="/checkout">Continue to Checkout ></RouterLink>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.cta {
+  display: flex;
+  justify-content: space-between;
+}
+</style>

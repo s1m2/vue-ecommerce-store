@@ -11,8 +11,8 @@ const search = ref('')
   <header class="border-b">
     <div class="container flex">
       <RouterLink to="/"><h1>Digital Tech</h1></RouterLink>  
-      <AppInput v-model="search" />
-      <RouterLink to="/checkout" class="flex">
+      <AppInput v-model="search" class="width"/>
+      <RouterLink to="/cart" class="flex">
         <IconCart /> 
         <span v-if="productStore.cartItems.length > 0"> {{ productStore.cartItems.length }}</span>
       </RouterLink> 
@@ -30,5 +30,9 @@ span {
   background-color: #e2e8f0;
   text-align: center;
   margin-left: 0.5rem;
+}
+
+.width {
+  width: 100%;
 }
 </style>

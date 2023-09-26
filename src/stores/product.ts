@@ -68,8 +68,8 @@ export const useProductStore = defineStore('product', () => {
   const updateProductQuantity = (product: Product, action: string) => {
     const item = checkIfProductExistsInCart(product)
     if (item) {
-      if (action === 'increase') item.quantity++
-      if (action === 'decrease' && item.quantity > 1) item.quantity--
+      if (action === 'increase') return item.quantity++
+      if (action === 'decrease' && item.quantity > 1) return item.quantity--
       removeFromCart(product)
     }
   }
