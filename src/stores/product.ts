@@ -58,5 +58,5 @@ export const useProductStore = defineStore('product', () => {
     if (item) cartItems.value = cartItems.value.filter((item: Product) => item.id !== product.id)
   }
 
-  return { products, getAllProducts, addToCart, cartItems, getProductItem, product, removeFromCart, getCartTotal }
+  return { products, getAllProducts, addToCart, cartItems, getProductItem, product, removeFromCart, getCartTotal, isLoading, isError }
 })
