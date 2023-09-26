@@ -4,7 +4,7 @@ import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia'
 
 const productStore = useProductStore();
-const { getProductItem } = productStore;
+const { getProductItem, addToCart } = productStore;
 const { product } = storeToRefs(productStore)
 const route = useRoute()
 
@@ -27,7 +27,7 @@ onMounted(() => {
       <p>{{ product?.brand }}</p>
       <p> {{ product?.description }} </p>
       <h3>£ {{ product?.price }}</h3>
-      <button>Add to cart</button>
+      <button @click="addToCart(product)">Add to cart</button>
     </div>
   </div>
   
@@ -57,5 +57,9 @@ onMounted(() => {
   aspect-ratio: 2 / 1;
   object-fit: contain;
   margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 5vw, 4rem);
 }
 </style>

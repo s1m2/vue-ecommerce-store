@@ -37,4 +37,8 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
+
+h2 {
+  margin-block-end: 1rem;
+}
 </style>

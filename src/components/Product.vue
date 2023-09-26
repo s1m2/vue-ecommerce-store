@@ -42,17 +42,8 @@ const addItemToCart = () => {
   display: flex;
   align-items: center;
   width: 100%;
-  outline: none;
-  border: none;
-  padding: 0.85rem;
-  text-align: center;
   align-self: baseline;
   justify-content: space-evenly;
-}
-
-.card__button:hover {
-  cursor: pointer;
-  background-color: #e2e8f0;
 }
 
 

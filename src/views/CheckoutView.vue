@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { useProductStore } from '@/stores/product';
+import { storeToRefs } from 'pinia'
 
 const productStore = useProductStore();
+
+const { removeFromCart } = productStore;
+const { getCartTotal } = storeToRefs(productStore)
 
 </script>
 
@@ -28,13 +32,13 @@ const productStore = useProductStore();
         <p>{{ item.price }}</p>
         <p><button>-</button>{{ item.quantity }}<button>+</button></p>
         <p>{{ item.price * item.quantity }}</p>
-        <button @click="productStore.removeFromCart(item.id)">Remove</button>
+        <button @click="removeFromCart(item)">Remove</button>
       </div>
 
       <div>
-        <p>Subtotal</p>
-        <p>Shipping</p>
-        <p>Total</p>
+        <p>Subtotal: {{ getCartTotal }} </p>
+        <p>Shipping: Free</p>
+        <p>Total: {{ getCartTotal }}</p>
       </div>
     </template>
   </div>

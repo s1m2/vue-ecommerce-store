@@ -14,6 +14,12 @@ export const useProductStore = defineStore('product', () => {
     return cartItems.value.reduce((acc: number, item: ProductWithQuantity) => acc + item.price * item.quantity, 0)
   })
 
+  const handleErrors = (error: any) => {
+    isLoading.value = false
+    isError.value = true
+    console.error(error)
+  }
+
   const getAllProducts = async () => {
     isLoading.value = true
     isError.value = false
@@ -23,9 +29,7 @@ export const useProductStore = defineStore('product', () => {
       products.value = response.products
       isLoading.value = false
     } catch (error) {
-      isLoading.value = false
-      isError.value = true
-      console.error(error)
+      handleErrors(error)
     }
   }
 
@@ -37,14 +41,17 @@ export const useProductStore = defineStore('product', () => {
       product.value = await data.json()
       isLoading.value = false
     } catch (error) {
-      isLoading.value = false
-      isError.value = true
-      console.error(error)
+      handleErrors(error)
     }
   }
 
+  const checkIfProductExistsInCart = (product: Product) => { 
+    return cartItems.value.find((item: Product) => item.id === product.id)
+  }
+
   const addToCart = (product: Product) => {
-    const item = cartItems.value.find((item: Product) => item.id === product.id)
+    const item = checkIfProductExistsInCart(product)
+    
     if (item) {
       item.quantity++
       return
@@ -54,9 +61,18 @@ export const useProductStore = defineStore('product', () => {
   }
 
   const removeFromCart = (product: Product) => {
-    const item = cartItems.value.find((item: Product) => item.id === product.id)
+    const item = checkIfProductExistsInCart(product)
     if (item) cartItems.value = cartItems.value.filter((item: Product) => item.id !== product.id)
   }
 
-  return { products, getAllProducts, addToCart, cartItems, getProductItem, product, removeFromCart, getCartTotal, isLoading, isError }
+  const updateProductQuantity = (product: Product, action: string) => {
+    const item = checkIfProductExistsInCart(product)
+    if (item) {
+      if (action === 'increase') item.quantity++
+      if (action === 'decrease' && item.quantity > 1) item.quantity--
+      removeFromCart(product)
+    }
+  }
+
+  return { products, getAllProducts, addToCart, cartItems, getProductItem, product, removeFromCart, getCartTotal, isLoading, isError, updateProductQuantity }
 })
