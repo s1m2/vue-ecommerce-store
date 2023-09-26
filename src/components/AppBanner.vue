@@ -1,9 +1,5 @@
 <script setup lang="ts">
-  type Props = {
-    text: string,
-  }
-
-  defineProps<Props>()
+defineProps<{ text?: string }>()
 </script>
 
 <template>

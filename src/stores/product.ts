@@ -35,5 +35,5 @@ export const useProductStore = defineStore('product', () => {
     cartItems.value.push({...product, quantity: 1})
   }
 
-  return { products, getAllProducts, addToCart, cartItems, getProductItem }
+  return { products, getAllProducts, addToCart, cartItems, getProductItem, product }
 })
