@@ -1,6 +1,6 @@
 # vue-ecommerce-project
 
-This template should help get you started developing with Vue 3 in Vite.
+This a Vue sample project build on Vue 3.
 
 ## Recommended IDE Setup
 
