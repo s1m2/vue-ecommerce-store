@@ -10,14 +10,14 @@ import PaymentInfo from '@/components/PaymentInfo.vue'
       <Cart />
       <PaymentInfo />
     </div>
-    <RouterLink to="/">&lt; Continue Shopping</RouterLink>
+    <RouterLink to="/" class="link">&lt; Continue Shopping</RouterLink>
   </div>
 </template>
 
 <style scoped>
 .items {
   display: grid;
-  grid-template-columns: 2fr auto;
+  grid-template-columns: 3fr 1fr;
   gap: 2rem;
 }
 </style>

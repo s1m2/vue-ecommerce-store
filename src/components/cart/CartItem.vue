@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import IconAdd from '@/components/icons/IconAdd.vue'
+import IconClose from '@/components/icons/IconClose.vue'
+import IconSubtract from '@/components/icons/IconSubtract.vue'
+
 import type { ProductWithQuantity } from '@/model/productModel';
 const props = defineProps<ProductWithQuantity>()
 
@@ -13,20 +17,32 @@ const emit = defineEmits<{
     <img :src="thumbnail" :alt="title" />
     <p>
       {{ title }} <br />
-      {{ description }}
+      <span class="font-size">{{ description }}</span>
     </p>
     <p>{{ price }}</p>
-    <p>
-      <button @click="emit('updateQuantity', props, 'decrease')">-</button>
+    <p class="quantity">
+      <IconSubtract class="pointer" @click="emit('updateQuantity', props, 'decrease')"/>
       {{ quantity}}
-      <button @click="emit('updateQuantity', props, 'increase')">+</button>
+      <IconAdd class="pointer" @click="emit('updateQuantity', props, 'increase')"/>
     </p>
     <p>{{ price * quantity }}</p>
-    <button @click="emit('removeFromCart', props)">Remove</button>
+    <IconClose class="pointer" @click="emit('removeFromCart', props)"/>
   </div>
 </template>
 
 <style scoped>
+.font-size {
+  font-size: 0.9rem;
+}
+.quantity {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 img {
   width: 8rem;
   aspect-ratio: 2 / 1;

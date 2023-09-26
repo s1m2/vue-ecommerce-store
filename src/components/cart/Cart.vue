@@ -33,10 +33,28 @@ const { getCartTotal, cartItems } = storeToRefs(productStore)
       @update-quantity="updateProductQuantity"
     />
 
-    <div>
-      <p>Subtotal: {{ getCartTotal }}</p>
+    <div class="calculation border-t">
+      <p>Subtotal: £ {{ getCartTotal }}</p>
       <p>Shipping: Free</p>
-      <p>Total: {{ getCartTotal }}</p>
+      <p class="total border-t">Total: £ {{ getCartTotal }}</p>
     </div>
   </div>
 </template>
+
+<style scoped>
+.calculation {
+  display: grid;
+  position: relative;
+  padding: 1.5rem 0;
+  justify-content: end;
+}
+.calculation p {
+  margin-bottom: 0.5rem;
+}
+
+.total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding: 1rem 0;
+}
+</style>

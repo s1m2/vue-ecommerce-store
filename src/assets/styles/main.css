@@ -10,9 +10,11 @@
 }
 
 .flex {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -26,6 +28,10 @@ body {
 input[type="text"] {
   padding: 0.6rem;
   border-radius: 2rem;
+}
+
+.border-t {
+  border-top: 1px solid #e2e8f0;
 }
 
 .border-b {
@@ -44,4 +50,10 @@ input[type="text"] {
 
 .form-input {
   display: grid;
+}
+
+.link {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: black;
 }
