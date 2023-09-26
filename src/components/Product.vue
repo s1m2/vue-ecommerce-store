@@ -27,6 +27,7 @@ const addItemToCart = () => {
 
 <style scoped> 
 .card {
+  display: grid;
   border: 1px solid #e2e8f0;
   padding: 0.85rem;
 }
@@ -45,6 +46,8 @@ const addItemToCart = () => {
   border: none;
   padding: 0.85rem;
   text-align: center;
+  align-self: baseline;
+  justify-content: space-evenly;
 }
 
 .card__button:hover {
@@ -54,13 +57,12 @@ const addItemToCart = () => {
 
 
 h1 {
-  font-size: clamp(1rem, 1.5vw, 1.8rem);
-  margin-bottom: 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  margin-block: 1rem;
 }
 
 p {
-  font-size: clamp(1rem, 1vw, 1.5rem);
-  margin-bottom: 1rem;
-  font-weight: 900;
+  font-size: clamp(1rem, 1vw, 1.1rem);
+  margin-bottom: 0.25rem;
 }
 </style>

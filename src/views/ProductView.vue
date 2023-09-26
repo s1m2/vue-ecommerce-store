@@ -14,14 +14,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container grid">
-    <div class="product-images">
-    
-      <div class="div">
+  <div class="container products">
+    <div class="product__images">
+      <div>
         <img v-for="(image, index) in product?.images" :src="image" :alt="product?.title" :key="index" class="product__image__list"/>
       </div>
       <img :src="product?.images[0]" :alt="product?.title" class="featured" />
-     
     </div>
 
     <div class="product-description">
@@ -36,13 +34,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.grid {
+.products {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
 }
 
-.product-images {
+.product__images {
   display: grid;
   grid-template-columns: auto 1fr;
 }

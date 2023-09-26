@@ -17,24 +17,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <AppLoader v-if="isLoading.value" />
+  <AppLoader v-if="isLoading" />
 
   <template v-else>
     <Hero :img="products[0]?.thumbnail" text="Ultimate Online Store"/>
 
     <div class="container">
-      <h2>Feature Products</h2>
-      <div class="grid">
+      <h2>Feature Products {{ isLoading.value }}</h2>
+      <div class="products">
         <Product v-for="(product, index) in products" :key="index" v-bind="product" />
       </div>
     </div>
   </template>
-  
+
 </template>
 
 <style scoped>
-.grid {
+.products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 </style>
