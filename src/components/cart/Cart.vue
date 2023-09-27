@@ -16,28 +16,30 @@ const { getCartTotal, cartItems } = storeToRefs(productStore)
       <p>There are no items in your cart</p>
     </div>
 
-    <div class="table space border-b" v-else>
-      <p style="width: 8rem"></p>
-      <p>Product</p>
-      <p>Unit Price</p>
-      <p>Quantity</p>
-      <p>Total Price</p>
-      <p></p>
-    </div>
+    <template v-else>
+      <div class="table space border-b">
+        <p style="width: 8rem"></p>
+        <p>Product</p>
+        <p>Unit Price</p>
+        <p>Quantity</p>
+        <p>Total Price</p>
+        <p></p>
+      </div>
 
-    <CartItem
-      v-for="(item, index) in cartItems"
-      :key="index"
-      v-bind="item"
-      @remove-from-cart="removeFromCart"
-      @update-quantity="updateProductQuantity"
-    />
+      <CartItem
+        v-for="(item, index) in cartItems"
+        :key="index"
+        v-bind="item"
+        @remove-from-cart="removeFromCart"
+        @update-quantity="updateProductQuantity"
+      />
 
-    <div class="calculation border-t">
-      <p>Subtotal: £ {{ getCartTotal }}</p>
-      <p>Shipping: Free</p>
-      <p class="total border-t">Total: £ {{ getCartTotal }}</p>
-    </div>
+      <div class="calculation border-t">
+        <p>Subtotal: £ {{ getCartTotal }}</p>
+        <p>Shipping: Free</p>
+        <p class="total border-t">Total: £ {{ getCartTotal }}</p>
+      </div>
+    </template>
   </div>
 </template>
 

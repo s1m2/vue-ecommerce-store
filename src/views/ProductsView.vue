@@ -17,11 +17,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <AppLoader v-if="isLoading" />
-
+  <div class="container" v-if="isLoading">
+    <AppLoader />
+  </div>
+  
   <template v-else>
     <Hero :img="products[0]?.thumbnail" text="Ultimate Online Store"/>
-
     <div class="container">
       <h2>Feature Products {{ isLoading.value }}</h2>
       <div class="products">

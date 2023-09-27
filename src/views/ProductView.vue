@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import IconStar from '@/components/icons/IconStar.vue'
-import AppLoader from '@/components/AppLoader.vue';
+import AppLoader from '@/components/AppLoader.vue'
 import { useProductStore } from '@/stores/product'
 import { storeToRefs } from 'pinia'
 
 const productStore = useProductStore()
 const { getProductItem, addToCart } = productStore
-const { product } = storeToRefs(productStore)
+const { product, isLoading } = storeToRefs(productStore)
 const route = useRoute()
 
 const currentImage = ref(0)
 
-const changeImage = (id: number) => currentImage.value = id
+const changeImage = (id: number) => (currentImage.value = id)
 
 onMounted(() => {
   getProductItem(route.params.id)
@@ -19,11 +19,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" v-if="isLoading">
+    <AppLoader />
+  </div>
+
+  <div class="container" v-else>
     <div class="link">
       <RouterLink to="/" class="link">&lt; Back to products</RouterLink>
     </div>
-   
+
     <div class="products">
       <div class="product__images">
         <div class="list">
@@ -42,9 +46,9 @@ onMounted(() => {
         <h1>{{ product?.title }}</h1>
         <p>{{ product?.brand }}</p>
         <p>{{ product?.description }}</p>
-        <p v-if="product?.rating" class="rating"> 
-          <IconStar v-for="rating in Math.floor(product?.rating)" :key="rating"/> 
-          <span>{{ product?.rating }}</span> 
+        <p v-if="product?.rating" class="rating">
+          <IconStar v-for="rating in Math.floor(product?.rating)" :key="rating" />
+          <span>{{ product?.rating }}</span>
         </p>
         <p>{{ product?.category }}</p>
         <h3>£ {{ product?.price }}</h3>
