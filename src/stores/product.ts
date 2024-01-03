@@ -1,23 +1,21 @@
-import { defineStore } from 'pinia'
-import { getProducts, getProduct } from '@/lib/api'
-import type { Product, ProductWithQuantity } from '@/model/productModel'
+import { defineStore } from 'pinia';
+import { getProducts, getProduct, searchProducts, getCategories } from '@/lib/api';
+import type { Product } from '@/model/productModel';
 
 export const useProductStore = defineStore('product', () => {
-  const products = ref<Product[] | []>([])
-  const cartItems = ref<ProductWithQuantity[] | []>([])
-  const product = ref<Product | null>(null)
+  const products = ref<Product[]>([]);
+  const searchResults = ref<Product[]>([]);
+  const product = ref<Product | null>(null);
+  const categories = ref<string[]>([]);
 
-  const isLoading = ref(false)
-  const isError = ref(false)
+  const isLoading = ref(false);
+  const isError = ref(false);
+  const errorMessage = ref('');
 
-  const getCartTotal = computed(() => {
-    return cartItems.value.reduce((acc: number, item: ProductWithQuantity) => acc + item.price * item.quantity, 0)
-  })
-
-  const handleErrors = (error: any) => {
+  const handleErrors = (error: unknown) => {
     isLoading.value = false
     isError.value = true
-    console.error(error)
+    errorMessage.value = error as string
   }
 
   const getAllProducts = async () => {
@@ -28,7 +26,7 @@ export const useProductStore = defineStore('product', () => {
       const response = await data.json()
       products.value = response.products
       isLoading.value = false
-    } catch (error) {
+    } catch (error: unknown) {
       handleErrors(error)
     }
   }
@@ -45,34 +43,37 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  const checkIfProductExistsInCart = (product: Product) => { 
-    return cartItems.value.find((item: Product) => item.id === product.id)
-  }
-
-  const addToCart = (product: Product) => {
-    const item = checkIfProductExistsInCart(product)
-    
-    if (item) {
-      item.quantity++
-      return
-    }
-    cartItems.value.push({...product, quantity: 1})
-    localStorage.setItem('cart', JSON.stringify(cartItems.value))
-  }
-
-  const removeFromCart = (product: Product) => {
-    const item = checkIfProductExistsInCart(product)
-    if (item) cartItems.value = cartItems.value.filter((item: Product) => item.id !== product.id)
-  }
-
-  const updateProductQuantity = (product: Product, action: string) => {
-    const item = checkIfProductExistsInCart(product)
-    if (item) {
-      if (action === 'increase') return item.quantity++
-      if (action === 'decrease' && item.quantity > 1) return item.quantity--
-      removeFromCart(product)
+  const searchProduct = async (query: string) => { 
+    try {
+      const data = await searchProducts(query)
+      const response = await data.json()
+      searchResults.value = response.products
+    } catch ( error ) {
+      handleErrors(error)
     }
   }
 
-  return { products, getAllProducts, addToCart, cartItems, getProductItem, product, removeFromCart, getCartTotal, isLoading, isError, updateProductQuantity }
+  const getAllCategories = async () => {
+    try {
+      const data = await getCategories()
+      const response = await data.json()
+      categories.value = response
+    } catch ( error ) {
+      handleErrors(error)
+    }
+  }
+
+
+  return {
+    categories,
+    getAllCategories,
+    searchResults,
+    products,
+    getAllProducts,
+    getProductItem,
+    searchProduct,
+    product,
+    isLoading,
+    isError,
+  }
 })

@@ -42,21 +42,3 @@ const { getCartTotal, cartItems } = storeToRefs(productStore)
     </template>
   </div>
 </template>
-
-<style scoped>
-.calculation {
-  display: grid;
-  position: relative;
-  padding: 1.5rem 0;
-  justify-content: end;
-}
-.calculation p {
-  margin-bottom: 0.5rem;
-}
-
-.total {
-  font-size: 1.5rem;
-  font-weight: 800;
-  padding: 1rem 0;
-}
-</style>

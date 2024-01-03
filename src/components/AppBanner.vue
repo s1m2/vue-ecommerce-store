@@ -3,16 +3,7 @@ defineProps<{ text?: string }>()
 </script>
 
 <template>
-  <div class="banner">
+  <div class="bg-black text-white text-center py-4">
     <p>{{ text }}</p>
   </div>
 </template>
-
-<style scoped>
-.banner {
-  background-color: black;
-  color: azure;
-  padding: 0.65rem;
-  text-align: center;
-}
-</style>

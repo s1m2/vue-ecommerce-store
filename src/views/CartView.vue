@@ -3,7 +3,7 @@ import Cart from '@/components/cart/Cart.vue'
 </script>
 
 <template>
-  <div class="container">
+  <div>
     <h1>Shopping Cart</h1>
     <Cart />
     <div class="cta">
@@ -12,10 +12,3 @@ import Cart from '@/components/cart/Cart.vue'
     </div>
   </div>
 </template>
-
-<style scoped>
-.cta {
-  display: flex;
-  justify-content: space-between;
-}
-</style>

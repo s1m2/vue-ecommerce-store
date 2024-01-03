@@ -14,19 +14,21 @@ const currentImage = ref(0)
 const changeImage = (id: number) => (currentImage.value = id)
 
 onMounted(() => {
-  getProductItem(route.params.id)
+  getProductItem(Number(route.params.id))
 })
 </script>
 
 <template>
-  <div class="container" v-if="isLoading">
+  <div class="max-w-screen-lg mx-auto" v-if="isLoading">
     <AppLoader />
   </div>
 
-  <div class="container" v-else>
-    <div class="link">
-      <RouterLink to="/" class="link">&lt; Back to products</RouterLink>
+  <div class="max-w-screen-lg mx-auto" v-else>
+    <div class="my-8">
+      <RouterLink to="/" class="text-2xl hover:text-gray-800">&lt; Back to products</RouterLink>
     </div>
+    
+
 
     <div class="products">
       <div class="product__images">
@@ -57,68 +59,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.link {
-  margin-block-end: 2rem;
-}
-.rating {
-  display: flex;
-}
-.rating span {
-  margin-left: 0.5rem;
-}
-.products {
-  display: grid;
-  grid-gap: 4rem;
-}
-.products p {
-  margin-block-end: 1rem;
-}
-.product__images {
-  display: grid;
-}
-
-.list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.featured {
-  width: 100%;
-  aspect-ratio: 2 / 1;
-  object-fit: contain;
-  margin-bottom: 2rem;
-}
-
-.product__image__list {
-  width: 5rem;
-  aspect-ratio: 2 / 1;
-  object-fit: contain;
-  margin-bottom: 2rem;
-}
-
-.products button {
-  margin-block-start: 2rem;
-  width: 100%;
-}
-
-h1 {
-  font-size: clamp(1.5rem, 5vw, 4rem);
-}
-
-@media (min-width: 48rem) {
-  .products {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .product__images {
-    grid-template-columns: auto 1fr;
-  }
-
-  .list {
-    display: grid;
-  }
-}
-</style>
