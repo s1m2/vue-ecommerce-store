@@ -3,10 +3,10 @@ import Cart from '@/components/cart/Cart.vue'
 </script>
 
 <template>
-  <div>
+  <div class="max-w-screen-lg mx-auto">
     <h1>Shopping Cart</h1>
     <Cart />
-    <div class="cta">
+    <div class="flex justify-between">
       <RouterLink to="/" class="link">&lt; Continue Shopping</RouterLink>
       <RouterLink to="/checkout" class="link">Continue to Checkout ></RouterLink>
     </div>

@@ -15,10 +15,9 @@ const { searchProduct } = productStore;
 const { cartItems } = storeToRefs(useCartStore());
 
 const search = ref('')
-
 const showSearchResultsOverlay = ref(false)
 
-watch(search, (value) => {
+watch(search, (value: string) => {
   if (value !== '') {
     searchProduct(value)
     showSearchResultsOverlay.value = true
