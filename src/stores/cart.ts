@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import type { Product, ProductWithQuantity } from '@/model/productModel'
 
 export const useCartStore = defineStore('cart', () => {
-  const cartItems = ref<ProductWithQuantity[]>([]);
+  const cartItems = ref<ProductWithQuantity[]>(JSON.parse(localStorage.getItem('cartItems')) || []);
 
   const getCartTotal = computed(() => {
     return cartItems.value.reduce(
@@ -10,6 +10,10 @@ export const useCartStore = defineStore('cart', () => {
       0
     )
   });
+
+  function checkIfCartIsEmpty() {
+    return cartItems.value.length === 0;
+  }
 
   const checkIfProductExistsInCart = (product: Product) => {
     return cartItems.value.find((item: Product) => item.id === product.id)
@@ -23,12 +27,14 @@ export const useCartStore = defineStore('cart', () => {
       return
     }
     
-    cartItems.value.push({ ...product, quantity: 1 })
+    cartItems.value.push({ ...product, quantity: 1 });
+    localStorage.setItem('cartItems', JSON.stringify(cartItems.value));
   };
 
   const removeFromCart = (product: Product) => {
     const item = checkIfProductExistsInCart(product);
     if (item) cartItems.value = cartItems.value.filter((item: Product) => item.id !== product.id);
+    if (checkIfCartIsEmpty()) localStorage.removeItem('cartItems');
   };
 
   const updateProductQuantity = (product: Product, action: string) => {
