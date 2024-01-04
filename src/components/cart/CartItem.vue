@@ -15,17 +15,20 @@ const emit = defineEmits<{
 <template>
   <tr>
     <td>
-      <img :src="thumbnail" :alt="title" class="w-36"/>
+      <img :src="thumbnail" :alt="title" class="aspect-video object-cover"/>
     </td>
     <td>
       {{ title }} <br />
       <span class="font-size">{{ description }}</span>
     </td>
     <td>£{{ price }}.00</td>
-    <td class="flex self-center gap-3">
-      <IconSubtract class="cursor-pointer" @click="emit('updateQuantity', props, 'decrease')" />
+    <td>
+      <div class="flex gap-3">
+        <IconSubtract class="cursor-pointer" @click="emit('updateQuantity', props, 'decrease')" />
       {{ quantity }}
       <IconAdd class="cursor-pointer" @click="emit('updateQuantity', props, 'increase')" />
+      </div>
+      
     </td>
     <td>{{ price * quantity }}</td>
     <td class="cursor-pointer"><IconClose class="pointer" @click="emit('removeFromCart', props)" /></td>

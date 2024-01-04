@@ -26,6 +26,10 @@ const router = createRouter({
       name: 'checkout',
       // route level code-splitting
       component: () => import('@/views/CheckoutView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]
 })

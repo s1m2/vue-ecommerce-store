@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useCartStore } from '@/stores/cart'
-import { storeToRefs } from 'pinia'
+import { useCartStore } from '@/stores/cart';
+import { storeToRefs } from 'pinia';
 
 import CartItem from '@/components/cart/CartItem.vue'
 
@@ -15,7 +15,7 @@ const { getCartTotal, cartItems } = storeToRefs(cartStore)
   </div>
 
   <template v-else>
-    <table class="table-auto border-separate border-spacing-6">
+    <table class="table-auto border-separate border-spacing-4">
       <thead>
         <tr>
           <th></th>
@@ -34,15 +34,19 @@ const { getCartTotal, cartItems } = storeToRefs(cartStore)
           @remove-from-cart="removeFromCart"
           @update-quantity="updateProductQuantity"
         />
+        <tr class="text-xl text-right">
+          <td colspan="5">Subtotal:</td>
+          <td>£{{ getCartTotal }}.00</td>
+        </tr>
+        <tr class="text-xl text-right">
+          <td colspan="5">Shipping:</td>
+          <td>Free</td>
+        </tr>
+        <tr class="text-xl font-semibold text-right">
+          <td colspan="5">Total:</td>
+          <td> £{{ getCartTotal }}.00</td>
+        </tr>
       </tbody>
-
-      <div class="calculation border-t border-b py-3 text-right">
-      <p class="text-xl">Subtotal: £{{ getCartTotal }}.00</p>
-      <p class="text-xl">Shipping: Free</p>
-      <p class="text-2xl font-semibold">Total: £{{ getCartTotal }}.00</p>
-    </div>
     </table>
-
-
   </template>
 </template>
