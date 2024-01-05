@@ -8,7 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 export default defineConfig({
   plugins: [
     AutoImport({
-      dts: './auto-imports.d.ts',
+      dts: true,
       vueTemplate: true,
       // targets to transform
       include: [

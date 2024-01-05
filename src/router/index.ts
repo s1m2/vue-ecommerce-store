@@ -26,6 +26,16 @@ const router = createRouter({
       name: 'checkout',
       // route level code-splitting
       component: () => import('@/views/CheckoutView.vue')
+    },
+    {
+      path: '/success',
+      name: 'success',
+      // route level code-splitting
+      component: () => import('@/views/SuccessPurchase.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]
 })

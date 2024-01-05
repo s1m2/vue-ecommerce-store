@@ -31,17 +31,6 @@ import IconPaypal from '@/components/icons/IconPaypal.vue'
       <input type="text" id="cvv" name="cvv" />
       <label for="cvv">CVV</label>
     </div>
-    <button> Check Out </button>
+    <button>Check Out</button>
   </div>
 </template>
-
-<style scoped>
-.payment {
-  padding: 1rem;
-  background-color: hsl(0, 0%, 98%);
-}
-
-.flex-form {
-  display: flex;
-}
-</style>

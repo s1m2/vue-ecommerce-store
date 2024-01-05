@@ -8,7 +8,7 @@ module.exports = {
     'eslint:recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier/skip-formatting',
-    './.eslintrc-auto-imports.json'
+    './.eslintrc-auto-import.json',
   ],
   overrides: [
     {

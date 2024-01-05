@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import AppHeader from '@/components/AppHeader.vue'
-import AppBanner from '@/components/AppBanner.vue'
+import { defineAsyncComponent } from 'vue';
+import { RouterView } from 'vue-router';
+
+import AppHeader from '@/components/AppHeader.vue';
+const AppBanner = defineAsyncComponent(() => import('@/components/AppBanner.vue'));
 </script>
 
 <template>

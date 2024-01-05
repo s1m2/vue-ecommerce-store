@@ -1,23 +1,35 @@
 <script setup lang="ts">
-import Cart from '@/components/cart/Cart.vue'
-import PaymentInfo from '@/components/PaymentInfo.vue'
+import Cart from '@/components/cart/Cart.vue';
+import { useStripe } from '@/composables/stripe';
+
+const { initializePaymentElement, handlePayment } = useStripe();
+
+onMounted(() => {
+  initializePaymentElement()
+})
 </script>
 
 <template>
-  <div class="container">
-    <h1>Checkout</h1>
-    <div class="items">
-      <Cart />
-      <PaymentInfo />
+  <div class="max-w-screen-lg mx-auto my-7">
+    <h1 class="text-xl">Checkout</h1>
+    <div class="grid gap-8">
+
+      <div class="border-b pb-10">
+        <h2 class="text-lg font-semibold">Shipping Information</h2>
+        <div id="shipping-info"></div>
+      </div>
+      
+      <div class="border-b pb-10">
+        <h2 class="text-lg font-semibold">Payment Information</h2>
+        <div id="payment-info"></div>
+      </div>
+
+      <div class="border-b pb-10">
+        <h2 class="text-lg font-semibold">Order Review</h2>
+        <Cart />
+      </div>
+      
+      <button class="bg-black text-white p-4" @click="handlePayment">Make Stripe Payment</button>
     </div>
-    <RouterLink to="/" class="link">&lt; Continue Shopping</RouterLink>
   </div>
 </template>
-
-<style scoped>
-.items {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 2rem;
-}
-</style>

@@ -1,56 +1,49 @@
 <script setup lang="ts">
-import AppInput from '@/components/AppInput.vue'
-import IconCart from '@/components/icons/IconCart.vue'
-import { useProductStore } from '@/stores/product'
+import { defineAsyncComponent } from 'vue';
 
-const productStore = useProductStore()
+import AppInput from '@/components/AppInput.vue';
+import IconCart from '@/components/icons/IconCart.vue';
+
+const SearchResults = defineAsyncComponent(() => import('@/components/SearchResults.vue'));
+
+import { storeToRefs } from 'pinia';
+import { useProductStore } from '@/stores/product'
+import { useCartStore } from '@/stores/cart'
+
+const productStore = useProductStore();
+const { searchProduct } = productStore;
+const { cartItems } = storeToRefs(useCartStore());
 
 const search = ref('')
+const showSearchResultsOverlay = ref(false)
+
+watch(search, (value: string) => {
+  if (value !== '') {
+    searchProduct(value)
+    showSearchResultsOverlay.value = true
+  } else {
+    showSearchResultsOverlay.value = false
+  }
+});
+
 </script>
 <template>
-  <header class="border-b">
-    <div class="container flex">
-      <RouterLink to="/"><h1>Digital Tech</h1></RouterLink>
-      <AppInput v-model="search" class="width" />
-      <RouterLink to="/cart" class="position">
+  <header class="border-b py-6">
+    <div class="mx-auto flex max-w-screen-lg justify-between gap-4">
+      <RouterLink to="/"><h1 class="text-2xl">Digital Tech</h1></RouterLink>
+      <div class="">
+        <AppInput v-model="search" />
+        <div v-if="showSearchResultsOverlay">
+          <SearchResults v-for="(product, index) in productStore.searchResults" :product="product" :key="index" @close="showSearchResultsOverlay = false"/>
+        </div>
+      </div>
+      
+      <RouterLink class="flex" to="/cart">
         <IconCart />
-        <div class="badge" v-if="productStore.cartItems.length > 0">
-          <p>{{ productStore.cartItems.length }}</p>
+        <div class="flex place-items-center justify-center bg-red-500 text-white h-6 w-6 rounded-full" v-if="cartItems.length > 0">
+          <p>{{ cartItems.length }}</p>
         </div>
       </RouterLink>
     </div>
   </header>
 </template>
-
-<style scoped>
-h1 {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  font-weight: 700;
-}
-.position {
-  position: relative;
-  display: flex;
-}
-
-.badge {
-  position: absolute;
-  top: -0.5rem;
-  left: 1rem;
-  border-radius: 100%;
-  height: 1.4rem;
-  width: 1.4rem;
-  padding: 0.5rem;
-  background-color: aqua;
-  text-align: center;
-}
-
-.badge p {
-  top: -0.5rem;
-  left: -0.1rem;
-  position: relative;
-}
-
-.width {
-  width: 100%;
-}
-</style>
