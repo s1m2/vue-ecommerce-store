@@ -3,9 +3,7 @@ import { defineAsyncComponent } from 'vue';
 import { RouterView } from 'vue-router';
 
 import AppHeader from '@/components/AppHeader.vue';
-
 const AppBanner = defineAsyncComponent(() => import('@/components/AppBanner.vue'));
-
 </script>
 
 <template>

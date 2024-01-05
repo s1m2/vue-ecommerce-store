@@ -15,6 +15,11 @@ export const useCartStore = defineStore('cart', () => {
     return cartItems.value.length === 0;
   }
 
+  function clearCart() {
+    cartItems.value = [];
+    localStorage.removeItem('cartItems');
+  }
+
   const checkIfProductExistsInCart = (product: Product) => {
     return cartItems.value.find((item: Product) => item.id === product.id)
   };
@@ -46,5 +51,5 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  return { cartItems, getCartTotal, addToCart, removeFromCart, updateProductQuantity}
+  return { cartItems, getCartTotal, addToCart, removeFromCart, updateProductQuantity, clearCart }
 });

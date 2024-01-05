@@ -1,4 +1,4 @@
-const baseUrl = 'https://dummyjson.com/products'
+const baseUrl = 'https://dummyjson.com/products';
 
 const handleResponse = (response: Response) => {
   if (!response.ok) throw response
@@ -19,4 +19,14 @@ export const searchProducts = async (query: string) => {
 
 export const getCategories = async () => {
   return fetch(`${baseUrl}/categories`).then(handleResponse)
+}
+
+export const createPaymentIntent = async (amount: number) => {
+  return fetch('http://localhost:4242/create-payment-intent', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ amount })
+  }).then(handleResponse)
 }

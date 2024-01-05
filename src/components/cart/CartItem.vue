@@ -15,7 +15,7 @@ const emit = defineEmits<{
 <template>
   <tr>
     <td>
-      <img :src="thumbnail" :alt="title" class="aspect-video object-cover"/>
+      <img :src="thumbnail" :alt="title" class="aspect-video object-cover h-12 w-24"/>
     </td>
     <td>
       {{ title }} <br />
