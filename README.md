@@ -1,6 +1,10 @@
 # vue-ecommerce-project
 
-This a Vue sample project build on Vue 3.
+This a Vue E=commerce project built with Vue 3, Pinia for statemanagement and stripe integration for checkout.
+The styling leverages tailwind css
+This project tries and leverages Vue best practices when creating a large project.
+This project is hosted on [netlify](https://vue-ecommerce-store.netlify.app/)
+It utilises a an express backend to initiate the payment [Link](https://github.com/s1m2/vue-ecommerce-server)
 
 ## Recommended IDE Setup
 
