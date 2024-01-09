@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
 import Hero from '@/components/AppHero.vue'
-import Product from '@/components/Product.vue'
+import ProductItem from '@/components/ProductItem.vue'
 import AppLoader from '@/components/AppLoader.vue'
 import IconClose from '@/components/icons/IconClose.vue'
 import type { Product as ProductModel } from '@/model/productModel'
@@ -80,7 +80,7 @@ onMounted(async () => {
             </button>
           </div>
           <div class="grid grid-cols-auto-fit gap-4">
-            <Product v-for="product in allProducts" :key="product.id" v-bind="product" />
+            <ProductItem v-for="product in allProducts" :key="product.id" v-bind="product" />
           </div>
         </div>
       </div>

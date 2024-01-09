@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Cart from '@/components/cart/Cart.vue'
-import { useStripe } from '@/composables/stripe'
+import CartWrapper from '@/components/cart/CartWrapper.vue';
+import { useStripe } from '@/composables/stripe';
 
 const { initializePaymentElement, handlePayment } = useStripe()
 
@@ -25,7 +25,7 @@ onMounted(() => {
 
       <div class="border-b pb-10">
         <h2 class="text-lg font-semibold">Order Review</h2>
-        <Cart />
+        <CartWrapper />
       </div>
 
       <button class="bg-black text-white p-4" @click="handlePayment">Make Stripe Payment</button>
