@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from 'vue'
 
-import AppInput from '@/components/AppInput.vue';
-import IconCart from '@/components/icons/IconCart.vue';
+import AppInput from '@/components/AppInput.vue'
+import IconCart from '@/components/icons/IconCart.vue'
 
-const SearchResults = defineAsyncComponent(() => import('@/components/SearchResults.vue'));
+const SearchResults = defineAsyncComponent(() => import('@/components/SearchResults.vue'))
 
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/product'
 import { useCartStore } from '@/stores/cart'
 
-const productStore = useProductStore();
-const { searchProduct } = productStore;
-const { cartItems } = storeToRefs(useCartStore());
+const productStore = useProductStore()
+const { searchProduct } = productStore
+const { cartItems } = storeToRefs(useCartStore())
 
 const search = ref('')
 const showSearchResultsOverlay = ref(false)
@@ -24,8 +24,7 @@ watch(search, (value: string) => {
   } else {
     showSearchResultsOverlay.value = false
   }
-});
-
+})
 </script>
 <template>
   <header class="border-b py-6">
@@ -34,13 +33,21 @@ watch(search, (value: string) => {
       <div class="">
         <AppInput v-model="search" />
         <div v-if="showSearchResultsOverlay">
-          <SearchResults v-for="(product, index) in productStore.searchResults" :product="product" :key="index" @close="showSearchResultsOverlay = false"/>
+          <SearchResults
+            v-for="(product, index) in productStore.searchResults"
+            :product="product"
+            :key="index"
+            @close="showSearchResultsOverlay = false"
+          />
         </div>
       </div>
-      
+
       <RouterLink class="flex" to="/cart">
         <IconCart />
-        <div class="flex place-items-center justify-center bg-red-500 text-white h-6 w-6 rounded-full" v-if="cartItems.length > 0">
+        <div
+          class="flex place-items-center justify-center bg-red-500 text-white h-6 w-6 rounded-full"
+          v-if="cartItems.length > 0"
+        >
           <p>{{ cartItems.length }}</p>
         </div>
       </RouterLink>

@@ -9,7 +9,7 @@ const model = computed({
 </script>
 <template>
   <input
-  class="p-2 border border-gray-400 rounded-3xl lg:w-96"
+    class="p-2 border border-gray-400 rounded-3xl lg:w-96"
     type="text"
     v-model="model"
     id="search"

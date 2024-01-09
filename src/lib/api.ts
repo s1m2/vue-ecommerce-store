@@ -1,4 +1,4 @@
-const baseUrl = 'https://dummyjson.com/products';
+const baseUrl = 'https://dummyjson.com/products'
 
 const handleResponse = (response: Response) => {
   if (!response.ok) throw response

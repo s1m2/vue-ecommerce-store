@@ -1,16 +1,16 @@
-import { defineStore } from 'pinia';
-import { getProducts, getProduct, searchProducts, getCategories } from '@/lib/api';
-import type { Product } from '@/model/productModel';
+import { defineStore } from 'pinia'
+import { getProducts, getProduct, searchProducts, getCategories } from '@/lib/api'
+import type { Product } from '@/model/productModel'
 
 export const useProductStore = defineStore('product', () => {
-  const products = ref<Product[]>([]);
-  const searchResults = ref<Product[]>([]);
-  const product = ref<Product | null>(null);
-  const categories = ref<string[]>([]);
+  const products = ref<Product[]>([])
+  const searchResults = ref<Product[]>([])
+  const product = ref<Product | null>(null)
+  const categories = ref<string[]>([])
 
-  const isLoading = ref(false);
-  const isError = ref(false);
-  const errorMessage = ref('');
+  const isLoading = ref(false)
+  const isError = ref(false)
+  const errorMessage = ref('')
 
   const handleErrors = (error: unknown) => {
     isLoading.value = false
@@ -43,12 +43,12 @@ export const useProductStore = defineStore('product', () => {
     }
   }
 
-  const searchProduct = async (query: string) => { 
+  const searchProduct = async (query: string) => {
     try {
       const data = await searchProducts(query)
       const response = await data.json()
       searchResults.value = response.products
-    } catch ( error ) {
+    } catch (error) {
       handleErrors(error)
     }
   }
@@ -58,11 +58,10 @@ export const useProductStore = defineStore('product', () => {
       const data = await getCategories()
       const response = await data.json()
       categories.value = response
-    } catch ( error ) {
+    } catch (error) {
       handleErrors(error)
     }
   }
-
 
   return {
     categories,
@@ -74,6 +73,6 @@ export const useProductStore = defineStore('product', () => {
     searchProduct,
     product,
     isLoading,
-    isError,
+    isError
   }
 })

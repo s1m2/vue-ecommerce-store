@@ -15,7 +15,7 @@ const emit = defineEmits<{
 <template>
   <tr>
     <td>
-      <img :src="thumbnail" :alt="title" class="aspect-video object-cover h-12 w-24"/>
+      <img :src="thumbnail" :alt="title" class="aspect-video object-cover h-12 w-24" />
     </td>
     <td>
       {{ title }} <br />
@@ -25,12 +25,13 @@ const emit = defineEmits<{
     <td>
       <div class="flex gap-3">
         <IconSubtract class="cursor-pointer" @click="emit('updateQuantity', props, 'decrease')" />
-      {{ quantity }}
-      <IconAdd class="cursor-pointer" @click="emit('updateQuantity', props, 'increase')" />
+        {{ quantity }}
+        <IconAdd class="cursor-pointer" @click="emit('updateQuantity', props, 'increase')" />
       </div>
-      
     </td>
     <td>{{ price * quantity }}</td>
-    <td class="cursor-pointer"><IconClose class="pointer" @click="emit('removeFromCart', props)" /></td>
+    <td class="cursor-pointer">
+      <IconClose class="pointer" @click="emit('removeFromCart', props)" />
+    </td>
   </tr>
 </template>

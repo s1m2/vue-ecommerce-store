@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import IconStar from '@/components/icons/IconStar.vue';
-import AppLoader from '@/components/AppLoader.vue';
-import { useProductStore } from '@/stores/product';
-import { useCartStore } from '@/stores/cart';
-import { storeToRefs } from 'pinia';
+import IconStar from '@/components/icons/IconStar.vue'
+import AppLoader from '@/components/AppLoader.vue'
+import { useProductStore } from '@/stores/product'
+import { useCartStore } from '@/stores/cart'
+import { storeToRefs } from 'pinia'
 
-const productStore = useProductStore();
-const cartStore = useCartStore();
-const { addToCart } = cartStore;
-const { getProductItem } = productStore;
-const { product, isLoading } = storeToRefs(productStore);
-const route = useRoute();
+const productStore = useProductStore()
+const cartStore = useCartStore()
+const { addToCart } = cartStore
+const { getProductItem } = productStore
+const { product, isLoading } = storeToRefs(productStore)
+const route = useRoute()
 
-const currentImage = ref(0);
+const currentImage = ref(0)
 
 function changeImage(id: number) {
   currentImage.value = id
@@ -32,10 +32,14 @@ onMounted(() => {
     <div class="my-8">
       <RouterLink to="/" class="text-2xl hover:text-gray-800">&lt; Back to products</RouterLink>
     </div>
-    
+
     <div class="grid lg:grid-cols-[1fr_1fr] gap-8">
       <div class="grid">
-        <img :src="product?.images[currentImage]" :alt="product?.title" class="w-full aspect-auto object-contain " />
+        <img
+          :src="product?.images[currentImage]"
+          :alt="product?.title"
+          class="w-full aspect-auto object-contain"
+        />
         <div class="flex">
           <img
             v-for="(image, index) in product?.images"

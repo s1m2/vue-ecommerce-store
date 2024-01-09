@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useStripe } from '@/composables/stripe';
+import { useStripe } from '@/composables/stripe'
 
-const statusMessage = ref('');
-const { checkPaymentStatus } = useStripe();
+const statusMessage = ref('')
+const { checkPaymentStatus } = useStripe()
 
 onBeforeMount(async () => {
-  statusMessage.value = await checkPaymentStatus();
+  statusMessage.value = await checkPaymentStatus()
 })
 </script>
 

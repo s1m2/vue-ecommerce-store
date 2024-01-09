@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useCartStore } from '@/stores/cart';
-import { storeToRefs } from 'pinia';
+import { useCartStore } from '@/stores/cart'
+import { storeToRefs } from 'pinia'
 
 import CartItem from '@/components/cart/CartItem.vue'
 
@@ -44,7 +44,7 @@ const { getCartTotal, cartItems } = storeToRefs(cartStore)
         </tr>
         <tr class="text-xl font-semibold text-right">
           <td colspan="5">Total:</td>
-          <td> £{{ getCartTotal }}.00</td>
+          <td>£{{ getCartTotal }}.00</td>
         </tr>
       </tbody>
     </table>

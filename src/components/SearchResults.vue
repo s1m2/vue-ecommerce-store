@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Product } from '@/model/productModel';
+import type { Product } from '@/model/productModel'
 
-const props = defineProps<{ product: Product }>();
-const emit = defineEmits<{ (event: 'close'): void }>();
-const router = useRouter();
+const props = defineProps<{ product: Product }>()
+const emit = defineEmits<{ (event: 'close'): void }>()
+const router = useRouter()
 
 function goToProduct() {
-  emit('close');
-  router.push(`/product/${props.product.id}`);
+  emit('close')
+  router.push(`/product/${props.product.id}`)
 }
 </script>
 
@@ -15,6 +15,6 @@ function goToProduct() {
   <div class="results">
     <button @click="goToProduct">
       {{ product.title }}
-    </button> 
+    </button>
   </div>
 </template>
