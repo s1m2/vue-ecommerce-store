@@ -6,7 +6,7 @@ const { initializePaymentElement, handlePayment } = useStripe()
 
 onMounted(() => {
   initializePaymentElement()
-})
+});
 </script>
 
 <template>

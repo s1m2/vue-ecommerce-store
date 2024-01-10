@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useRouter, useRoute } from 'vue-router'
-import Hero from '@/components/AppHero.vue'
-import ProductItem from '@/components/ProductItem.vue'
-import AppLoader from '@/components/AppLoader.vue'
-import IconClose from '@/components/icons/IconClose.vue'
-import type { Product as ProductModel } from '@/model/productModel'
+import { useRouter, useRoute } from 'vue-router';
+import Hero from '@/components/AppHero.vue';
+import ProductItem from '@/components/ProductItem.vue';
+import AppLoader from '@/components/AppLoader.vue';
+import IconClose from '@/components/icons/IconClose.vue';
+import AppAccordion from '@/components/AppAccordion.vue';
+import type { Product as ProductModel } from '@/model/productModel';
 
 import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/product'
@@ -47,36 +48,23 @@ onMounted(async () => {
 
   <template v-else>
     <Hero v-if="products.length" :img="products[0]?.thumbnail" text="Ultimate Online Store" />
-    <div class="max-w-screen-lg mx-auto px-6">
-      <h2 class="text-xl my-8">Showing {{ allProducts.length }} items</h2>
+    <div class="max-w-screen-lg mx-auto px-6 mt-8">
       <div class="grid lg:grid-cols-[1fr_4fr] gap-10">
-        <ul>
-          <h3 class="text-xl mb-6">Shop By Categories</h3>
-          <li
-            v-for="(category, index) in categories"
-            :key="index"
-            class="text-lg p-2 cursor-pointer hover:text-green-600 hover:bg-gray-100"
-            @click="selectCategory(category)"
-          >
-            {{ category }}
-          </li>
-        </ul>
-
+        <div>
+          <p class="mb-1 font-semibold">REFINE BY:</p>
+          <p class="pb-2 mb-2 border-b">You have selected:</p>
+          <AppAccordion title="CATEGORY" :list="categories" />
+        </div>
+        
         <div v-if="allProducts.length === 0">
           <h2>No products found</h2>
         </div>
 
         <div v-else>
-          <div class="flex justify-between">
-            <button
-              class="flex gap-3 place-items-center mb-6 border py-2 px-4 rounded-3xl"
-              v-if="selectedCategory"
-            >
-              {{ selectedCategory }}
-              <IconClose class="pointer" height="18" width="18" @click="resetCategory()" />
-            </button>
-            <button class="flex gap-3 place-items-center mb-6 border py-2 px-4 rounded-3xl">
-              Sort by: Highest Price
+          <div class="flex justify-between items-center mb-7">
+            <p>Showing {{ allProducts.length }} items</p>
+            <button class="flex gap-3 place-items-center border py-2 px-4">
+              Sort by: Newest First
             </button>
           </div>
           <div class="grid grid-cols-auto-fit gap-4">
