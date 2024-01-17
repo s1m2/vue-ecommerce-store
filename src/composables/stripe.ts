@@ -35,7 +35,7 @@ export function useStripe() {
     const { error } = await stripe.value.confirmPayment({
       elements: elements.value,
       confirmParams: {
-        return_url: 'http://localhost:5173/success'
+        return_url: 'https://vue-ecommerce-store.netlify.app/success'
       }
     });
 
