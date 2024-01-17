@@ -20,7 +20,7 @@ onMounted(() => {
       </div>
 
       <div class="border-b pb-10">
-        <h2 class="text-lg font-semibold">Payment Information</h2>
+        <h2 class="text-lg font-semibold mb-5">Payment Information</h2>
         <AppSpinner v-if="status === 'loading'" />
         <div id="payment-info"></div>
       </div>
