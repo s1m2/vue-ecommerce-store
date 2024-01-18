@@ -7,7 +7,7 @@ const AppBanner = defineAsyncComponent(() => import('@/components/AppBanner.vue'
 </script>
 
 <template>
-  <AppBanner text="20% Discount for first-timer only, Shop now!" />
+  <AppBanner v-if="false" text="20% Discount for first-timer only, Shop now!" />
   <AppHeader />
   <RouterView />
 </template>

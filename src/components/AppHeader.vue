@@ -24,10 +24,10 @@ watch(search, (value: string) => {
 });
 </script>
 <template>
-  <header class="mx-auto max-w-screen-lg">
-    <RouterLink to="/" class="bg-black text-white">Digital Tech</RouterLink>
+  <header class="flex justify-between items-center mx-auto max-w-screen-lg">
+    <RouterLink to="/" class="bg-black text-white p-4 text-xl">Digital Tech</RouterLink>
     <div>
-      <AppInput v-model="search" />
+      <AppInput v-model="search" class="w-96" />
       <div v-if="showSearchResultsOverlay">
         <SearchResults
           v-for="(product, index) in productStore.searchResults"
