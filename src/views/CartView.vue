@@ -7,8 +7,8 @@ import CartWrapper from '@/components/cart/CartWrapper.vue'
     <h1 class="text-xl">Shopping Cart</h1>
     <CartWrapper />
     <div class="flex justify-between mt-8">
-      <RouterLink class="text-xl" to="/">&lt; Continue Shopping</RouterLink>
-      <RouterLink class="text-xl" to="/checkout">Continue to Stripe Checkout ></RouterLink>
+      <RouterLink class=" bg-black text-white p-4 hover:bg-gray-700" to="/">Continue Shopping</RouterLink>
+      <RouterLink class=" bg-black text-white p-4 hover:bg-gray-700" to="/checkout">Continue to Checkout</RouterLink>
     </div>
   </div>
 </template>

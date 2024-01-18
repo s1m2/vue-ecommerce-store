@@ -7,7 +7,7 @@ const { status, initializePaymentElement, handlePayment } = useStripe();
 
 onMounted(() => {
   initializePaymentElement();
-})
+});
 </script>
 
 <template>
@@ -30,7 +30,7 @@ onMounted(() => {
         <CartWrapper />
       </div>
 
-      <button class="bg-black text-white p-4" @click="handlePayment">Make Stripe Payment</button>
+      <button class="flex gap-4 justify-center bg-black text-white p-4 hover:bg-gray-700" @click="handlePayment"><AppSpinner /> Make Payment</button>
     </div>
   </div>
 </template>
