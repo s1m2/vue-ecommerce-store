@@ -1,8 +1,11 @@
-export function useStripe() {
-  const route = useRoute()
-  const router = useRouter()
+import { createPaymentIntent } from '@/lib/api';
 
-  const token = ref(null)
+export function useStripe() {
+  const route = useRoute();
+  const router = useRouter();
+
+  const token = ref(null);
+  const status = ref<string| null>(null);
   const stripe = ref(
     new Stripe(
       'pk_test_51Hw6gsLsmY8VNNHcZF2z8MsIN9IsKYLCZlobPsaPgGKyp92tOp9J0KLkHnKX4HXWuUkzDNCV9Zpj6TiyojPolxST00gbaYsjtW'
@@ -11,33 +14,30 @@ export function useStripe() {
   const elements = ref(null)
 
   async function initializePaymentElement() {
-    const response = await fetch(
-      'https://ecommerce-server-c226.onrender.com/create-payment-intent',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ amount: 1099 })
-      }
-    )
-
-    const { clientSecret } = await response.json()
-    token.value = clientSecret
-    const options = { clientSecret }
-
-    elements.value = stripe.value.elements(options)
-    const paymentElement = elements.value.create('payment')
-    paymentElement.mount('#payment-info')
+    status.value = 'loading'
+    try {
+      const response = await createPaymentIntent(1099);
+      const { clientSecret } = await response.json();
+      token.value = clientSecret;
+      const options = { clientSecret };
+  
+      elements.value = stripe.value.elements(options);
+      const paymentElement = elements.value.create('payment');
+      paymentElement.mount('#payment-info');
+      status.value = 'success';
+    } catch (error) {
+      status.value = 'error'; 
+      console.log(error);
+    }
   }
 
   async function handlePayment() {
     const { error } = await stripe.value.confirmPayment({
       elements: elements.value,
       confirmParams: {
-        return_url: 'http://localhost:5173/success'
+        return_url: 'https://vue-ecommerce-store.netlify.app/success'
       }
-    })
+    });
 
     if (error.type === 'card_error' || error.type === 'validation_error') {
       alert(error.message)
@@ -53,5 +53,5 @@ export function useStripe() {
     return paymentIntent.status
   }
 
-  return { initializePaymentElement, handlePayment, checkPaymentStatus }
+  return { status, initializePaymentElement, handlePayment, checkPaymentStatus }
 }

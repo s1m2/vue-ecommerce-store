@@ -22,7 +22,7 @@ export const getCategories = async () => {
 }
 
 export const createPaymentIntent = async (amount: number) => {
-  return fetch('http://localhost:4242/create-payment-intent', {
+  return fetch('https://ecommerce-server-c226.onrender.com/create-payment-intent', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
